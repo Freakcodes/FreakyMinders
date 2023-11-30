@@ -16,7 +16,7 @@ function Home() {
   return (
     <>
     <div className="flex">
-      <Sidebar />
+     
       {/* Add the rest of your content here */}
       <div className="flex-1 p-4">
         <h1 className="text-3xl font-bold mb-4">Welcome!</h1>

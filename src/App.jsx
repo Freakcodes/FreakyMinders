@@ -10,7 +10,7 @@ import AuthLayout from './auth/AuthLayout'
 import Home from './root/pages/Home'
 import Profile from './root/pages/Profile'
 import { AuthProvider } from './auth/AuthContext'
-
+import Create from './root/pages/Create'
 function App() {
 
 
@@ -28,6 +28,7 @@ function App() {
           <Route element={<Rootlayout />}>
             <Route index element={<Home />} />
             <Route path='/profile' element={<Profile />} />
+            <Route path='/create' element={<Create/>}/>
             
             
           </Route>

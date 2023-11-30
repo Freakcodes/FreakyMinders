@@ -2,6 +2,7 @@ import { Client,Account,Databases,Storage,Avatars} from 'appwrite'
 
 
 export const client=new Client();
+
 export const appwriteConfig={
     projectId:"6555f3a2a51e8e2ffbc1",
     url:"https://cloud.appwrite.io/v1",
