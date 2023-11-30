@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
-import { account } from "../appwrite/config";
+import { account, appwriteConfig, databases, storage } from "../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { ID} from 'appwrite';
 import { Audio } from "react-loader-spinner";
@@ -67,12 +67,64 @@ export const AuthProvider = ({children}) => {
             }
             setLoading(false)
          }
+         const createPost=async(image,caption)=>{
+            const uploadedFile=await uploadFile(image);
+            const fileUrl= getFilePreview(uploadedFile.$id);
+            console.log(fileUrl);
+            //Create post 
+            const newpost=await databases.createDocument(
+                appwriteConfig.databaseId,
+                appwriteConfig.postCollectionId,
+                ID.unique(),
+                {
+                    imageId:ID.unique(),
+                    caption:caption,
+                    imageUrl:fileUrl
+                }
+            )
+           return newpost;
+         }
+         const uploadFile=async(image)=>{
+            try{
+                const uploadedFile=await storage.createFile(
+                    appwriteConfig.storageId,
+                    ID.unique(),
+                    image
+                )
+                return uploadedFile
+            }
+            catch(error){
+                console.log(error);
+            }
+
+
+         }
+          function getFilePreview(fileId) {
+            try {
+              const fileUrl = storage.getFilePreview(
+                appwriteConfig.storageId,
+                fileId,
+                2000,
+                2000,
+                "top",
+                100
+              );
+          
+              if (!fileUrl) throw Error;
+          
+              return fileUrl;
+            } catch (error) {
+              console.log(error);
+            }
+          }
+
 
         const contextData = {
             user,
             loginUser,
             logoutUser,
-            registerUser
+            registerUser,
+            createPost
         }
 
     return(

@@ -27,7 +27,7 @@ function App() {
           {/* private routes */}
           <Route element={<Rootlayout />}>
             <Route index element={<Home />} />
-            <Route path='/profile' element={<Profile />} />
+            <Route path='/profile' element={<Profile/>} />
             <Route path='/create' element={<Create/>}/>
             
             

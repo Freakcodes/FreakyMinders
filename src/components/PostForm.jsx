@@ -1,10 +1,10 @@
 // PostForm.js
 import React, { useState } from 'react';
-
+import { useAuth } from '../auth/AuthContext';
 const PostForm = () => {
   const [caption, setCaption] = useState('');
   const [image, setImage] = useState(null);
-
+  const {createPost}=useAuth();
   const handleCaptionChange = (e) => {
     setCaption(e.target.value);
   };
@@ -18,8 +18,8 @@ const PostForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     // Here, you can send the caption and image to your backend for further processing
-    console.log('Caption:', caption);
-    console.log('Image:', image);
+    console.log(image);
+    createPost(image,caption);
     // Add your API call or other logic here
     // Reset form after submission if needed
     setCaption('');
