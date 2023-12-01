@@ -29,8 +29,6 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/profile' element={<Profile/>} />
             <Route path='/create' element={<Create/>}/>
-            
-            
           </Route>
 
         </Routes>

@@ -12,6 +12,7 @@ export const AuthProvider = ({children}) => {
         const [loading, setLoading] = useState(true)
         const [user, setUser] = useState(null);
         const[error,setError]=useState(false);
+        const [post,setPost]=useState([]);
         useEffect(() => {
             //setLoading(false)
             checkUserStatus()
@@ -20,7 +21,7 @@ export const AuthProvider = ({children}) => {
          const loginUser = async (userInfo) => {
             setLoading(true)
 
-            console.log('userInfo',userInfo)
+            
 
             try{
                 let response = await account.createEmailSession(userInfo.email, userInfo.password)
@@ -117,14 +118,26 @@ export const AuthProvider = ({children}) => {
               console.log(error);
             }
           }
+        const showPosts=async()=>{
+           let data= await databases.listDocuments(
+            appwriteConfig.databaseId,
+            appwriteConfig.postCollectionId
+           )
+           
+            setPost(data.documents);
+           
+        }
+       
 
 
         const contextData = {
             user,
+            post,
             loginUser,
             logoutUser,
             registerUser,
-            createPost
+            createPost,
+            showPosts
         }
 
     return(

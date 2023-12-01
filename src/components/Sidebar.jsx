@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
   const { logoutUser } = useAuth()
   return (
-    <div className="bg-gray-800 text-white h-screen w-1/6 p-4">
+    <div className="bg-gray-800 text-white h-screen w-1/6 p-4 fixed   ">
       <h2 className="text-2xl font-bold mb-4">FreakyMinders</h2>
       <ul>
         <Link to='/'><li className="mb-2 "><FaHome className='inline' />Home</li></Link>

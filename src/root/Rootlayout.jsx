@@ -5,7 +5,7 @@ import Sidebar from '../components/Sidebar';
 function Rootlayout() {
   const {user}=useAuth();
  return user?(
-  <div className='flex'>
+  <div className='flex '>
     
     <Sidebar/>
     <Outlet/>
